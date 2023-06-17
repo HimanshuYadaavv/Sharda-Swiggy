@@ -8,10 +8,10 @@ import java.util.*;
 
 public class App {
     User user;
-    Dish[] dishList=new Dish[15];
-    Restro[] restroList=new Restro[5];
+    Dish[] dishList=new Dish[18];
+    Restro[] restroList=new Restro[6];
 
-    Location[] locationList=new Location[15];
+    Location[] locationList=new Location[18];
 
 
     App()
