@@ -6,6 +6,8 @@ import java.nio.file.InvalidPathException;
 import java.nio.file.Paths;
 import java.util.*;
 
+import static java.lang.Integer.*;
+
 public class App {
     User user;
     Dish[] dishList=new Dish[15];
@@ -54,7 +56,7 @@ public class App {
         String lines;
         for(int dishcnt=0;(lines=dishData.readLine())!=null;dishcnt++){
             String[] data = lines.split(",");
-            dishList[dishcnt]=new Dish(data[0],data[1],data[2],Integer.parseInt(data[3]));
+            dishList[dishcnt]=new Dish(data[0],data[1],data[2], parseInt(data[3]));
         }
 
     }
@@ -88,20 +90,20 @@ public class App {
         int orderListLenth=(orderInputData.length-1)/2;
         Invoice[] orderList=new Invoice[orderListLenth];
         int bill=0;
-        if(Integer.valueOf(restroID)>5){
+        if(parseInt(restroID)>5){
             System.out.println("Invalid Input\nPlease enter valid Restaurant ID");
         }else {
             System.out.println("****************************************************************");
             System.out.println("Your Order");
-            System.out.println(restroList[Integer.valueOf(restroID)-1].getRestroName());
+            System.out.println(restroList[parseInt(restroID)-1].getRestroName());
 
             for (int ordercnt=1,orderlistcnt=0;ordercnt<orderInputData.length;ordercnt++){
-                Dish[] temp=restroList[Integer.valueOf(restroID)-1].getMenu();
-                String dishID=temp[Integer.valueOf(orderInputData[ordercnt])-1].getDishID();
-                String dishName=temp[Integer.valueOf(orderInputData[ordercnt])-1].getDishName();
-                Dish tempDish=temp[Integer.valueOf(orderInputData[ordercnt])-1];
-                int dishPrice=temp[Integer.valueOf(orderInputData[ordercnt])-1].getPrice();
-                int qty=Integer.valueOf(orderInputData[++ordercnt]);
+                Dish[] temp=restroList[parseInt(restroID)-1].getMenu();
+                String dishID=temp[parseInt(orderInputData[ordercnt])-1].getDishID();
+                String dishName=temp[parseInt(orderInputData[ordercnt])-1].getDishName();
+                Dish tempDish=temp[parseInt(orderInputData[ordercnt])-1];
+                int dishPrice=temp[parseInt(orderInputData[ordercnt])-1].getPrice();
+                int qty= parseInt(orderInputData[++ordercnt]);
 
                 bill+=dishPrice*qty;
 
