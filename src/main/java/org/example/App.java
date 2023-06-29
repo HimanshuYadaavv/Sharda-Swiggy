@@ -114,11 +114,6 @@ public class App {
         }
     }
 
-
-
-
-
-
     public void browse() throws NullPointerException {
         System.out.println("**********************************************************************");
         System.out.println("Please choose Dishes from the Following Menu");
@@ -137,6 +132,7 @@ public class App {
             dishcount=1;
             restrocount++;
         }
+        createOrder(null);
     }
 
     public static void main(String []args) throws IOException, InvalidPathException {
