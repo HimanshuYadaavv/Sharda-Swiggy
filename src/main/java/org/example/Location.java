@@ -11,23 +11,17 @@ public class Location {
         this.longitude=lon;
     }
 
-    public void setLatitude(float latitude) {
-        this.latitude = latitude;
-    }
-
-    public void setLongitude(float longitude) {
-        this.longitude = longitude;
-    }
-
-    public String getRestroID() {
-        return restroID;
+    public String getRestroID(){
+    return restroID;
     }
 
     public double getLatitude() {
+
         return latitude;
     }
 
     public double getLongitude() {
+
         return longitude;
     }
 }

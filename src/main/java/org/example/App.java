@@ -8,13 +8,13 @@ import java.util.*;
 
 public class App {
     User user;
-    Dish[] dishList=new Dish[18];
-    Restro[] restroList=new Restro[6];
+    Dish[] dishList=new Dish[15];
+    Restro[] restroList=new Restro[5];
 
-    Location[] locationList=new Location[18];
+    Location[] locationList=new Location[15];
 
 
-    App()
+    public App()
     {
         Location userLocation = new Location("000",50,67);
         this.user = new User("Himanshu Yadav",userLocation);
@@ -67,10 +67,56 @@ public class App {
         }
     }
 
+
+
+
     public double deliveryTime(Location userLocation, Location restroLocation){
         double diff=Math.abs(Math.pow((restroLocation.getLatitude()-userLocation.getLatitude()),2))+Math.abs(Math.pow((restroLocation.getLongitude()-userLocation.getLongitude()),2));
         return Math.sqrt(diff);
     }
+
+    public void createOrder(Restro[] restroList){
+        if(restroList==null){
+            restroList=this.restroList;
+        }
+        System.out.println("***************************************************************");
+        System.out.println("Select your Restaurant and order dishes from it in the format | RestroID, DishID1, Qty1, DishID2, Qty2.....");
+        Scanner createorder=new Scanner(System.in);
+        String orderInput=createorder.next();
+        String[] orderInputData=orderInput.split(",");
+        String restroID=orderInputData[0];
+        int orderListLenth=(orderInputData.length-1)/2;
+        Invoice[] orderList=new Invoice[orderListLenth];
+        int bill=0;
+        if(Integer.valueOf(restroID)>5){
+            System.out.println("Invalid Input\nPlease enter valid Restaurant ID");
+        }else {
+            System.out.println("****************************************************************");
+            System.out.println("Your Order");
+            System.out.println(restroList[Integer.valueOf(restroID)-1].getRestroName());
+
+            for (int ordercnt=1,orderlistcnt=0;ordercnt<orderInputData.length;ordercnt++){
+                Dish[] temp=restroList[Integer.valueOf(restroID)-1].getMenu();
+                String dishID=temp[Integer.valueOf(orderInputData[ordercnt])-1].getDishID();
+                String dishName=temp[Integer.valueOf(orderInputData[ordercnt])-1].getDishName();
+                Dish tempDish=temp[Integer.valueOf(orderInputData[ordercnt])-1];
+                int dishPrice=temp[Integer.valueOf(orderInputData[ordercnt])-1].getPrice();
+                int qty=Integer.valueOf(orderInputData[++ordercnt]);
+
+                bill+=dishPrice*qty;
+
+                System.out.println("\t"+ (orderlistcnt+1)+"."+dishName+"\tQty: "+qty);
+                orderList[orderlistcnt]=new Invoice(tempDish,qty);
+
+            }
+            System.out.println("*****************************************************");
+            System.out.println("Your total Bill Amount is: "+ bill+"\nDo you like to make the Payment? Press 1 | YES 2 | NO\"");
+        }
+    }
+
+
+
+
 
 
     public void browse() throws NullPointerException {
